@@ -14,7 +14,7 @@ arwen:
   header_description: Blog tutorial pemrograman web
   date_format: "%d %B %Y"
   google_analytics: "UA-27136969-13"
-  disqus_shortname: "koding-io"
+  disqus_shortname: "koding-blog"
   nav_links:
     -
       title: Home
