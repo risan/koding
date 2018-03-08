@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ site.title }} - {{ site.arwen.header_description }}</title>
+    {% seo title=false %}
+    <link rel="stylesheet" href="{{ '/css/index.css' | absolute_url }}">
+    {% feed_meta %}
+  </head>
+  <body>
+    {% include header-index.html %}
+    {% include nav.html %}
+    <main class="main container">
+      {% for post in site.posts %}
+        <a href="{{ post.url | absolute_url }}" class="article-link">
+          <article class="article">
+            <div class="article-img-container">
+              <img src="{{ post.image_thumb }}" alt="{{ post.title | escape }}" class="article-img">
+            </div>
+            <div class="article-body">
+              <h3 class="article-title">{{ post.title | escape }}</h3>
+              <p class="article-excerpt">{{ post.excerpt }}</p>
+              <footer class="article-footer">
+                <time datetime="{{ post.date | date: '%Y-%m-%d' }}" pubdate>
+                  {% assign date_format = site.arwen.date_format | default: "%b %-d, %Y" %}
+                  {{ post.date | date: date_format }}
+                </time>
+              </footer>
+            </div>
+          </article>
+        </a>
+      {% endfor %}
+    </main>
+    {% include footer.html %}
+    {% include google-analytics.html %}
+  </body>
+</html>

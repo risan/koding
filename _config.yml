@@ -1,0 +1,86 @@
+# General settings
+lang: id
+title: Koding
+permalink: :title:output_ext
+description: >-
+  Blog tutorial pemrograman web. Mulai dari Javascript Node.js, Express, React,
+  Vue, PHP, Laravel, hingga DevOps.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://risan.github.io/koding"
+
+# Theme related settings
+arwen:
+  header_title: Koding
+  header_description: Blog tutorial pemrograman web
+  date_format: "%d %B %Y"
+  #google_analytics: "UA-27136969-12"
+  #disqus_shortname: "risan-io"
+  nav_links:
+    -
+      title: Home
+      url: /
+  footer_links:
+    -
+      title: Github
+      url: https://github.com/risan
+    -
+      title: Stackoverflow
+      url: https://stackoverflow.com/users/5138222
+    -
+      title: Medium
+      url: https://medium.com/risan
+    -
+      title: Twitter
+      url: https://twitter.com/risanbagja
+    -
+      title: Email
+      url: "mailto:risanbagja@gmail.com"
+
+# Plugin settings
+author: Risan Bagja Pradana # Used by feed & seo-tag
+twitter: # Used by seo-tag
+  username: risanbagja
+social: # Used by seo-tag
+  name: Risan Bagja Pradana
+  links:
+    - https://twitter.com/risanbagja
+    - https://www.facebook.com/risanbagja
+    - https://www.linkedin.com/in/risanbagja
+    - https://plus.google.com/+risanbagja
+    - https://github.com/risan
+
+# Markdown settings
+markdown: kramdown
+highlighter: rouge
+
+# Build settings
+safe: true
+strict_front_matter: true
+liquid:
+  error_mode: strict
+sass:
+  style: compressed
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - CNAME
+
+# Default front matter
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      layout: "post"
+      comments: true
+      image_thumb: https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=500&q=80
+      image: # Used by seo-tag plugin
+        path: https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1200&q=80
+        width: 1200
+        height: 800
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag

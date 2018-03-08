@@ -1,0 +1,9 @@
+{% if jekyll.environment == 'production' and site.arwen.google_analytics %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-27136969-12"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ site.arwen.google_analytics }}');
+  </script>
+{% endif %}

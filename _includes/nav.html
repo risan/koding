@@ -1,0 +1,13 @@
+<nav class="nav">
+  <ul class="nav-menu container">
+    {% for link in site.arwen.nav_links %}
+    <li class="nav-menu-item">
+      <a href="{{ link.url | absolute_url }}" class="nav-menu-link">{{ link.title }}</a>
+    </li>
+    {% else %}
+    <li class="nav-menu-item">
+      <a href="{{ '/' | absolute_url }}" class="nav-menu-link">Home</a>
+    </li>
+    {% endfor %}
+  </ul>
+</nav>

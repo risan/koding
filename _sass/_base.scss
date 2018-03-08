@@ -1,0 +1,126 @@
+@import "variables";
+@import "reboot";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  max-width: 100%;
+}
+
+code,
+pre {
+  font-family: $font-family-monospace;
+}
+
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+}
+
+.main {
+  background: #fff;
+
+  @media (min-width: $screen-md-min) {
+    margin-top: ($spacer * 2);
+    margin-bottom: ($spacer * 2);
+  }
+}
+
+// Header
+.header {
+  background: $header-bg;
+}
+
+.header-container {
+  padding: $spacer;
+}
+
+.header-link {
+  color: #fff;
+
+  &:active,
+  &:hover {
+    color: #fff;
+  }
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.header-description {
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin: 0;
+  color: #8d9196;
+}
+
+// Nav
+.nav {
+  background: $nav-bg;
+}
+
+.nav-menu {
+  overflow-x: auto;
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+.nav-menu-link {
+  color: #fff;
+  display: block;
+  padding: ($spacer * 0.75) $spacer;
+
+  &:active,
+  &:hover {
+    color: #fff;
+  }
+}
+
+// Footer
+.footer {
+  color: #8d9196;
+  background: $header-bg;
+  margin-top: auto;
+
+  a:link,
+  a:visited {
+    color: #8d9196;
+    text-decoration: underline;
+  }
+
+  a:active,
+  a:hover {
+    color: #fff;
+  }
+}
+
+.footer-container {
+  padding: ($spacer * 2) $spacer;
+}
+
+.footer-menu {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.footer-menu-link {
+  margin-right: 1rem;
+}

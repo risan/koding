@@ -1,0 +1,21 @@
+<footer class="footer">
+  <div class="footer-container container">
+    <p class="footer-license">
+      {% if site.arwen.footer_license %}
+        {{ site.arwen.footer_license }}
+      {% else %}
+        Except where otherwise noted, content on this blog is licensed under a
+        <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+      {% endif %}
+    </p>
+    {% if site.arwen.footer_links.size > 0 %}
+      <ul class="footer-menu">
+        {% for link in site.arwen.footer_links %}
+          <li class="footer-menu-item">
+            <a class="footer-menu-link" href="{{ link.url }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</footer>

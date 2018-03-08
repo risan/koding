@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<article class="article">
+  <header class="article-header">
+    <h1 class="article-title">{{ page.title | escape }}</h1>
+    <time datetime="{{ page.date | date: '%Y-%m-%d' }}" pubdate class="article-date">
+      {% assign date_format = site.arwen.date_format | default: "%b %-d, %Y" %}
+      {{ page.date | date: date_format }}
+    </time>
+  </header>
+  {{ content }}
+  {% include article-comments.html %}
+</article>
