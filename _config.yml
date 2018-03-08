@@ -6,7 +6,7 @@ description: >-
   Blog tutorial pemrograman web. Mulai dari Javascript Node.js, Express, React,
   Vue, PHP, Laravel, hingga DevOps.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://koding.blog"
+url: "https://koding.blog"
 
 # Theme related settings
 arwen:
