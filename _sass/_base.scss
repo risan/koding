@@ -20,6 +20,30 @@ pre {
   font-family: $font-family-monospace;
 }
 
+table {
+  width: 100%;
+  max-width: 100%;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  background-color: transparent;
+}
+
+table th,
+table td {
+  padding: 0.2rem 0.4rem;
+  vertical-align: top;
+  border-top: 1px solid #dbdbdb;
+}
+
+table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dbdbdb;
+}
+
+table tbody + tbody {
+  border-top: 2px solid #dbdbdb;
+}
+
 .container {
   width: 100%;
   max-width: $container-max-width;

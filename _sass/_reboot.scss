@@ -246,3 +246,18 @@ img {
 svg:not(:root) {
   overflow: hidden; // Hide the overflow in IE
 }
+
+
+//
+// Tables
+//
+
+table {
+  border-collapse: collapse; // Prevent double borders
+}
+
+th {
+  // Matches default `<td>` alignment by inheriting from the `<body>`, or the
+  // closest parent with a set `text-align`.
+  text-align: inherit;
+}

@@ -47,7 +47,8 @@
   }
 
   img {
-    width: 100%;
+    display: block;
+    margin: auto;
   }
 
   ul, ol {
@@ -67,7 +68,7 @@
     }
   }
 
-  p {
+  p, li, table {
     code {
       font-size: 1.1rem;
       color: #bf616a;
