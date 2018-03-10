@@ -17,8 +17,11 @@ arwen:
   disqus_shortname: "koding-blog"
   nav_links:
     -
-      title: Home
+      title: Beranda
       url: /
+    -
+      title: Ihwal
+      url: https://risan.io/about
   footer_links:
     -
       title: Github
