@@ -175,3 +175,224 @@ Sepanjang tutorial ini kita akan menemui sejumlah kotak dengan emoji seperti ber
     - [Menggunakan array_filter](#menggunakan-array_filter)
     - [Menggunakan array_reduce](#menggunakan-array_reduce)
 - [Penutup](#penutup)
+
+## Hello World
+
+![Hello World]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/hello-world-meme.jpg" | absolute_url }})
+
+Langkah pertama, mari kita membuat program "Hello World" dalam PHP. Buka alamat website berikut: [repl.it/languages/php](https://repl.it/languages/php). Situs ini memungkinkan kita untuk menulis dan menjalankan program PHP secara *online* (daring). Tidak hanya PHP, situs ini juga mendukung sejumlah bahasa pemrograman lainnya: Java, Ruby, Python, hingga Haskell.
+
+Tikan baris kode PHP berikut pada *input* (masukan) di sebelah kiri:
+
+```php
+echo 'Hello World!';
+```
+
+Selanjutnya, klik tombol dengan simbol "play" di bagian atas untuk menjalankan kode tersebut. *Output* (keluaran) dari program akan muncul di sebelah kanan layar. Jika berhasil, kita akan mendapatkan *output* teks berupa `Hello World!`.
+
+![Output program Hello World]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/01-output-repl.png" | absolute_url }})
+
+`echo` merupakan *keyword* dalam PHP untuk mencetak *string*. *String* adalah serangkaian karakter—dapat berupa huruf, angka, juga simbol. Dalam PHP, *string* harus diapit oleh tanda kutip tunggal (`'`) ataupun kutip ganda (`"`). Perbedaan keduanya akan dibahas lebih lanjut pada [bagian selanjutnya](#string). Penggunaan *string* tanpa kutip akan membuahkan *syntax error*.
+
+```php
+// Contoh string dengan kutip tunggal.
+echo 'Aku string dengan kutip tunggal!';
+
+// Contoh string dengan kutip ganda.
+echo "Aku string dengan kutip ganda!";
+
+// Tanpa kutip akan menghasilkan syntax error.
+echo Aku pasti error;
+```
+
+> ⚠️ **Jangan lupa titik koma!**
+>
+> PHP mengharuskan setiap *statement* (baris instruksi) diakhiri dengan titik koma (`;`). Tanpa titik koma, program "Hello World" yang kita buat akan menghasilkan *syntax error*.
+
+```php
+// Tanpa diakhiri titik koma.
+echo 'Hello World!'
+
+// Error yang didapat:
+syntax error, unexpected 'string' (T_STRING), expecting ',' or ';'
+```
+
+## Menginstal PHP
+
+Sebelum mempelajari PHP lebih lanjut, mari kita menginstal PHP di komputer.
+
+![You are still using PHP 5]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/php-5-meme.jpg" | absolute_url }})
+
+### Menginstal PHP di macOS
+
+Beruntung macOS sudah menyertakan PHP di dalam sistem operasinya. Untuk mengecek instalasi PHP, buka aplikasi **iTerm** atau **Terminal**. Tikan perintah berikut di dalam terminal untuk mengecek versi PHP yang sudah terpasang:
+
+```shell
+$ php -v
+```
+
+Perintah di atas akan mencetak `output` berupa versi PHP yang terpasang:
+
+```shell
+PHP 7.2.4 (cli) (built: Mar 29 2018 15:19:46) ( NTS )
+Copyright (c) 1997-2018 The PHP Group
+Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
+    with Zend OPcache v7.2.4, Copyright (c) 1999-2018, by Zend Technologies
+```
+
+#### Menginstal Homebrew
+
+Biasanya versi PHP bawaan macOS sedikit tertinggal. Untuk menginstal versi teranyar, salah satu cara yang paling mudah adalah dengan menggunakan [Homebrew](https://brew.sh/). Homebrew ini merupakan *package manager* untuk macOS—layaknya dpkg pada Debian atau RPM pada Redhat.
+
+Pertama, kita perlu menginstal aplikasi **Command Line Tools** dari Apple. Jalankan perintah berikut pada terminal:
+
+```shell
+$ xcode-select --install
+```
+
+Selanjutnya, tikan perintah berikut untuk menginstal Homebrew:
+
+```shell
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Setelah sukses menginstal Homebrew, kita bisa menggunakan perintah-perintah berikut:
+
+```shell
+# Untuk mengecek masalah pada instalasi Homebrew.
+$ brew doctor
+
+# Mencetak bantuan Homebrew.
+$ brew help
+
+# Memperbarui instalasi Homebrew dan daftar formulanya.
+$ brew update
+```
+
+Sementara untuk mengorganisir formula (istilah *package* dalam Homebrew), kita bisa menjalankan peritah-perintah berikut:
+
+```shell
+# Untuk mencari formula.
+$ brew search <teks pencarian>
+
+# Untuk menginstal formula.
+$ brew install <nama formula>
+
+# Untuk menghapus instalasi formula.
+$ brew uninstall <nama formula>
+
+# Untuk memperbarui formula.
+$ brew upgrade <name formula>
+
+# Memperbarui semua formula yang sudah terpasang.
+$ brew upgrade
+
+# Mencetak semua formula yang sudah terpasang.
+$ brew list
+```
+
+#### Memperbarui Homebrew
+
+Untuk kamu yang sudah menginstal Homebrew sebelumnya, jangan lupa untuk menjalankan perintah berikut untuk memperbarui instalasi Homebrew beserta daftar formulanya:
+
+```shell
+$ brew update
+```
+
+#### Menginstal PHP dengan Homebrew
+
+Jalankan perintah berikut di terminal untuk menginstal PHP:
+
+```shell
+$ brew install php
+```
+
+Setelah instalasi tuntas, *restart* terminal atau buka tab baru. Jalankan perintah berikut untuk memverifikasi versi PHP yang terpasang:
+
+```shell
+$ php -v
+```
+
+Pada saat artikel ini ditulis formula `php` akan menginstall PHP versi `7.2.4`.
+
+> 💡 Saat tutorial ini ditulis, formula-formula pada `homebrew-php` tengah dalam proses penyatuan ke dalam *repository* utama [`homebrew-core`](https://github.com/Homebrew/homebrew-core). Dengan penyatuan ini kita tidak perlu lagi men-`tap` [`homebrew-php`](https://github.com/Homebrew/homebrew-php) untuk menginstall PHP. Ikuti diskusinya lebih lanjut [di sini](https://github.com/Homebrew/homebrew-php/issues/4721).
+
+### Menginstal PHP di Ubuntu
+
+Instalasi PHP pada Ubuntu dan distro Linux lainnya sangatlah mudah. *Package* PHP umumnya sudah tersedia pada *repository* bawaan. Pun begitu, versi PHP yang tersedia biasanya sedikit tertinggal.
+
+Untuk mendapatkan PHP versi teranyar, kita bisa menambahkan PPA (Personal Package Archive) dari `ondrej/php`. Buka terminal dan jalankan perintah berikut:
+
+```shell
+$ sudo add-apt-repository ppa:ondrej/php
+```
+
+Setelah PPA ini berhasil ditambahkan, jangan lupa untuk memperbarui daftar *package* pada komputer dengan menjalankan perintah berikut:
+
+```shell
+$ sudo apt-get update
+```
+
+Gunakan perintah `apt-cache search` untuk mencari versi PHP yang diinginkan:
+
+```shell
+$ sudo apt-cache search php7.2
+```
+
+Jalankan perintah berikut untuk menginstall PHP versi 7.2:
+
+```shell
+$ sudo apt-get install php7.2 -y
+```
+
+Untuk memverifikasi versi PHP yang terpasang, jalankan perintah berikut di terminal:
+
+```shell
+$ php -v
+```
+
+### Menginstal PHP di Windows
+
+Sayangnya penulis tidak berpengalaman dengan sistem operasi Windows. Untungnya ada sejumlah *bundle* aplikasi yang mudah untuk dipasang dan umumnya menyertakan paket komplit mulai dari PHP, web *server*, hingga *database*. Berikut beberapa pilihan populer:
+
+#### XAMPP
+
+[XAMPP](https://www.apachefriends.org) merupakan salah satu *bundle* aplikasi yang populer untuk bekerja dengan PHP di Windows. Selain PHP, dalam *bundle*-nya ia turut menyertakan Apache sebagai web server dan MariaDB (*fork* dari MySQL yang dikembangkan komunitas) untuk *database*-nya. XAMPP juga menyertakan phpMyAdmin untuk mempermudah kerja dengan database.
+
+> 📘 Cek tutorial [Cara Menggunakan XAMPP untuk Menjalankan PHP & MySQL](https://www.niagahoster.co.id/blog/cara-menggunakan-xampp/) dari Niagahoster.
+
+#### Laragon
+
+![Website Laragon]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/02-laragon-website.png" | absolute_url }})
+
+Dibandingkan dengan XAMPP, [Laragon](https://www.laragon.org) relatif lebih modern dan menawarkan banyak fitur. Untuk web *server*, Laragon menyertakan Apache dan Nginx. Untuk *database*-nya, Laragon mengandalkan MySQL. Selain itu Laragon menyediakan beragam *tools* esensial: Git, Composer, Node.js hingga Yarn. Dengan Laragon kita juga dapat dengan mudah membuat proyek berbasis Wordpress, Symfony, Laravel hingga Drupal. Fitur lainnya yang menggiurkan adalah kemampuannya untuk membuat *virtual host* secara otomatis.
+
+Cek [dokumentasi resmi Laragon](https://www.laragon.org/docs/install.html) untuk mempelajari cara menginstal dan ragam fitur yang ditawarkan.
+
+#### Aplikasi Alternatif Lainnya
+
+Selain dua *bundle* aplikasi di atas, masih banyak alternatif lainnya yang bisa kamu coba:
+
+- [MAMP](https://www.mamp.info/) - *bundle* aplikasi PHP, Apache, Nginx, MySQL dan Python.
+- [WampServer](http://www.wampserver.com/) - *bundle* aplikasi PHP, Apache dan MySql.
+- [PHP for Windows](https://windows.php.net/download/) - jika kamu ingin menginstal PHP langsung dari *binaries* nya.
+
+## Memilih Text Editor
+
+![Website Laragon]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/vim-tweet.png" | absolute_url }})
+
+Yang kita butuhkan selanjutnya adalah *text editor* (editor teks) yang mumpuni. Ada banyak pilihan *text editor* di luar sana. Berikut adalah dua *text editor* yang cocok untuk pemula:
+
+### Sublime Text
+
+[Sublime Text](https://www.sublimetext.com/) merupakan salah satu *text editor* yang sangat populer. Ia tersohor karena ringan dan cepat, bahkan saat membuka file dengan ukuran yang sangat besar. Meski tak sepenuhnya gratis, ia memberikan waktu *trial* selamanya. Sayangnya, karena dikembangkan seorang diri, pembaruan aplikasinya sangat jarang.
+
+![Sublime Text]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/03-sublime-text-website.png" | absolute_url }})
+
+### Visual Studio Code
+
+[Visual Studio Code](https://code.visualstudio.com/) atau VSCode merupakan *text editor* *open source* dari Microsoft yang akhir-akhir ini popularitasnya kian menanjak. Ia dikembangkan berdasarkan *text editor* [Atom](https://atom.io/) besutan Github. VSCode menawarkan fitur yang mutakhir untuk sebuah *text editor*: *auto-completion* dengan *IntelliSense*, *debugger*, integrasi Git, serta *built-in* terminal yang sangat responsif.
+
+Dukungan komunitasnya juga sangat besar. Pengembangan *text editor*-nya sangat aktif serta banyak *extension* yang tersedia untuk mempermudah pekerjaan *coding* sehari-hari.
+
+![Visual Studio Code]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/04-vscode-website.png" | absolute_url }})
