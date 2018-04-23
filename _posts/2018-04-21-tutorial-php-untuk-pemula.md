@@ -1,398 +1,239 @@
----
-title: Tutorial PHP untuk Pemula
-excerpt: Tutorial dasar PHP untuk pemula. Pelajari dasar-dasar pemrograman PHP mulai dari variable, tipe data, operator, percabangan, perulangan, fungsi, hingga Closure.
-image_thumb: http://localhost:4000/img/php-small.png
-image:
-  path: http://localhost:4000/img/php.png
-  width: 1200
-  height: 800
----
-PHP—akronim rekursif dari *PHP: Hypertext Preprocessor*)—merupakan bahasa pemrograman untuk web yang mulanya dikembangkan oleh Rasmus Lerdorf pada tahun 1994. PHP berjalan di sisi server (peladen) dan umumnya digunakan untuk membuat aplikasi berbasis web yang dinamis.
 
-Meski sintaksis dan fiturnya kadang dikritik oleh programmer lain, PHP tetap populer dan mendominasi jagad internet. Perusahaan-perusahaan berbasis teknologi ternama mulai dari [Facebook](https://hhvm.com/), [Automattic](https://github.com/WordPress/WordPress) (Wordpress), [Slack](https://slack.engineering/taking-php-seriously-cf7a60065329), hingga [Wikipedia](https://en.wikipedia.org/wiki/Wikipedia:FAQ/Technical#What_software_is_used_to_run_Wikipedia?) masih setia dengan PHP yang sudah berumur lebih dari dua dekade ini. PHP pun kerap menjadi pilihan pertama untuk para pemula yang ingin belajar pemrograman.
 
-Tutorial kali ini diperuntukan untuk pemula yang ingin belajar PHP serta dasar-dasar pemrograman. Apakah kamu siap menjadi pengembang PHP yang handal?
+Pada bagian sebelumnya, kita telah berhasil menjalankan kode PHP di situs [repl.it](https://repl.it). Dengan PHP yang sudah terpasang, mari kita belajar menjalankan kode PHP di komputer kita sendiri.
 
-![I'm Ready](https://media.giphy.com/media/l1Aswx03WbLDf9kYw/giphy.gif)
+### PHP Interactive Shell
 
-Sepanjang tutorial ini kita akan menemui sejumlah kotak dengan emoji seperti berikut:
+REPL sebenarnya merupakan akronim dari: Read–Eval–Print Loop. Ia berupa *interactive shell* dimana kita bisa memasukan kode yang akan langsung dieksekusi dan ditampilkan hasilnya di dalam *shell* itu sendiri. Banyak bahasa pemrograman yang menyediakan fitur seperti REPL ini, termasuk PHP.
 
-* ⚠️ **Peringatan**: Berisi peringatan penting seputar keamanan, performa, dan potensi *bug*.
-* 💡 **Informasi**: Berisi informasi tambahan seputar topik yang tengah dibahas.
-* 👍🏻 **Tips & Trick**: Berisi tips dan trik yang berguna dalam membantu pekerjaan *programming* sehari-hari.
-* 🎨 **Clean Code**: Berisi panduan penulisan kode yang baik.
-* 📘 **Dokumentasi**: Berisi tautan ke dokumentasi atau artikel lain yang membahas lebih dalam suatu topik.
+Untuk menjalankan *interactive shell* dari PHP, buka terminal dan jalankan perintah berikut:
 
-## Daftar Isi
-
-- [Hello World](#hello-world)
-- [Menginstal PHP](#menginstal-php)
-    - [Menginstal PHP di macOS](#menginstal-php-di-macos)
-    - [Menginstal PHP di Ubuntu](#menginstal-php-di-ubuntu)
-    - [Menginstal PHP di Windows](#menginstal-php-di-windows)
-- [Memilih Text Editor](#memilih-text-editor)
-- [Hello Again, World](#hello-again-world)
-    - [PHP Interctive Shell](#php-interactive-shell)
-    - [Menyimpan Kode PHP dalam File](#menyimpan-kode-php-dalam-file)
-    - [Menjalankan file PHP dengan Command Line](#menjalankan-file-php-dengan-command-line)
-    - [Menjalankan file PHP dengan Web Server](#menjalankan-file-php-dengan-web-server)
-    - [Latihan Membuat File PHP](#latihan-membuat-file-php)
-    - [Rangkuman Membuat File PHP](#rangkuman-membuat-file-php)
-- [Pengetahuan Dasar Syntax PHP](#pengetahuan-dasar-syntax-php)
-    - [Komentar dalam PHP](#komentar-dalam-php)
-    - [PHP itu Case Insensitive, Tapi](#php-itu-case-insensitive-tapi)
-    - [Latihan Dasar Syntax PHP](#latihan-dasar-syntax-php)
-    - [Rangkuman Komentar dan Case Sensitivity dalam PHP](#rangkuman-komentar-dan-case-sensitivity-dalam-php)
-- [Variable dalam PHP](#variable-dalam-php)
-    - [Menuliskan Nama Variable](#menuliskan-nama-variable)
-    - [Mencetak Nilai Variable](#mencetak-nilai-variable)
-    - [Variable Scope](#variable-scope)
-    - [Superglobals](#superglobals)
-    - [Latihan Variable](#latihan-variable)
-    - [Rangkuman Variable](#rangkuman-variable)
-- [Konstanta dalam PHP](#konstanta-dalam-php)
-    - [Cakupan Konstanta](#cakupan-konstanta)
-    - [Tipe Data untuk Konstanta](#tipe-data-untuk-konstanta)
-    - [Case-Sensitivity pada Konstanta](#case-sensitivity-pada-konstanta)
-    - [Predefined & Magic Constants](#predefined--magic-constants)
-    - [Latihan Konstanta](#latihan-konstanta)
-    - [Rangkuman Konstanta](#rangkuman-konstanta)
-- [Tipe Data dalam PHP](#tipe-data-dalam-php)
-    - [Tipe Data Skalar](#tipe-data-skalar)
-    - [Tipe Data Compound](#tipe-data-compound)
-    - [Tipe Data Spesial](#tipe-data-spesial)
-    - [Tipe Data Pseudo](#tipe-data-pseudo)
-    - [Type Juggling](#type-juggling)
-    - [Type Casting](#type-casting)
-    - [Latihan Tipe Data](#latihan-tipe-data)
-    - [Rangkuman Tipe Data](#rangkuman-tipe-data)
-- [Operator](#operator)
-    - [Operator Aritmetika](#operator-aritmetika)
-    - [Operator Assignment](#operator-assignment)
-    - [Operator Increment & Decrement](#operator-increment--decrement)
-    - [Operator Bitwise](#operator-bitwise)
-    - [Operator Perbandingan](#operator-perbandingan)
-    - [Operator Logika](#operator-logika)
-    - [Operator Ternary](#operator-ternary)
-    - [Null Coalescing Operator](#null-coalescing-operator)
-    - [Operator String](#operator-string)
-    - [Operator Array](#operator-array)
-    - [Operator Tipe](#operator-tipe)
-    - [Error Control Operator](#error-control-operator)
-    - [Execution Operator](#execution-operator)
-    - [Prioritas Operator](#prioritas-operator)
-    - [Latihan Menggunakan Operator](#latihan-menggunakan-operator)
-    - [Rangkuman Operator dalam PHP](#rangkuman-operator-dalam-php)
-- [Percabangan dengan if elseif dan else](#percabangan-dengan-if-elseif-dan-else)
-    - [Keyword If](#keyword-if)
-    - [Yoda Condition](#yoda-condition)
-    - [Keyword Else](#keyword-else)
-    - [Keyword Elseif](#keyword-elseif)
-    - [Gaya Lain Penulisan If Elseif dan Else](#gaya-lain-penulisan-if-elseif-dan-else)
-    - [Type Juggling diterapkan Pada Kondisi](#type-juggling-diterapkan-pada-kondisi)
-    - [Latihan Percabangan dengan If Else dan Elseif](#latihan-percabangan-dengan-if-else-dan-elseif)
-    - [Rangkuman If Elseif dan Else](#rangkuman-if-elseif-dan-else)
-- [Percabangan dengan Switch](#percabangan-dengan-switch)
-    - [Keyword Break dalam Switch](#keyword-break-dalam-switch)
-    - [Keyword Default dalam Switch](#keyword-default-dalam-switch)
-    - [Keterbatasan Switch](#keterbatasan-switch)
-    - [Latihan Percabangan Switch](#latihan-percabangan-switch)
-    - [Rangkuman Percabangan Switch](#rangkuman-percabangan-switch)
-- [Perulangan dengan While](#perulangan-dengan-while)
-    - [Infinite Loop pada Perulangan While](#infinite-loop-pada-perulangan-while)
-    - [Keyword Break pada Perulangan While](#keyword-break-pada-perulangan-while)
-    - [Keyword Continue pada Perulangan While](#keyword-continue-pada-perulangan-while)
-    - [Gaya Lain Penulisan Perulangan While](#gaya-lain-penulisan-perulangan-while)
-    - [Type Juggling pada Perulangan While](#type-juggling-pada-perulangan-while)
-    - [Latihan Perulangan While](#latihan-perulangan-while)
-    - [Rangkuman Perulangan While](#rangkuman-perulangan-while)
-- [Perulangan Do-While](#perulangan-do-while)
-    - [Infinite Loop pada Perulangan Do-While](#infinite-loop-pada-perulangan-do-while)
-    - [Keyword Break pada Perulangan Do-While](#keyword-break-pada-perulangan-do-while)
-    - [Keyword Continue pada Perulangan Do-While](#keyword-continue-pada-perulangan-do-while)
-    - [Latihan Perulangan Do-While](#latihan-perulangan-do-while)
-    - [Rangkuman Perulangan Do-While](#rangkuman-perulangan-do-while)
-- [Perulangan dengan for](#perulangan-dengan-for)
-    - [Keyword Break pada Perulangan For](#keyword-break-pada-perulangan-for)
-    - [Keyword Continue pada Perulangan For](#keyword-continue-pada-perulangan-for)
-    - [Gaya Lain Penulisan Perulangan For](#gaya-lain-penulisan-perulangan-for)
-    - [Tiga Ekspresi dalam Perulangan For Bersifat Opsional](#tiga-ekspresi-dalam-perulangan-for-bersifat-opsional)
-    - [Latihan Perulangan For](#latihan-perulangan-for)
-    - [Rangkuman Perulangan For](#rangkuman-perulangan-for)
-- [Fungsi dalam PHP](#fungsi-dalam-php)
-    - [Memanggil Fungsi](#memanggil-fungsi)
-    - [Aturan Penulisan Fungsi](#aturan-penulisan-fungsi)
-    - [Konsep Code Reuse](#konsep-code-reuse)
-    - [Fungsi dengan Parameter](#fungsi-dengan-parameter)
-    - [Fungsi Variadic](#fungsi-variadic)
-    - [Nilai Default Argumen pada Fungsi](#nilai-default-argumen-pada-fungsi)
-    - [Passing by Value vs Passing by Reference](#passing-by-value-vs-passing-by-reference)
-    - [Fungsi dengan Nilai Kembalian](#fungsi-dengan-nilai-kembalian)
-    - [Deklarasi Tipe Data pada Parameter Fungsi](#deklarasi-tipe-data-pada-parameter-fungsi)
-    - [Konversi Tipe Data pada Pemberian Argumen](#konversi-tipe-data-pada-pemberian-argumen)
-    - [Deklarasi Tipe Data pada Kembalian Fungsi](#deklarasi-tipe-data-pada-kembalian-fungsi)
-    - [Konversi Tipe Data pada Kembalian Fungsi](#konversi-tipe-data-pada-kembalian-fungsi)
-    - [Latihan Fungsi](#latihan-fungsi)
-    - [Rangkuman Fungsi](#rangkuman-fungsi)
-- [Anonymous Function, Lambda, dan Closure](#anonymous-function-lambda-dan-closure)
-    - [Anonymous Function](#anonymous-function)
-    - [Anonymous Function dengan Argumen](#anonymous-function-dengan-argumen)
-    - [Kegunaan Anonymous Function](#kegunaan-anonymous-function)
-    - [Lambda](#lambda)
-    - [Closure](#closure)
-    - [Latihan Closure](#latihan-closure)
-    - [Rangkuman Closure](#rangkuman-closure)
-- [Menyertakan Kode dari File Lain](#menyertakan-kode-dari-file-lain)
-    - [Menggunakan include_once](#menggunakan-include_once)
-    - [Menggunakan require](#menggunakan-require)
-    - [Menggunakan require_once](#menggunakan-require_once)
-    - [Rangkuman Menyertakan Kode dari File Lain](#rangkuman-menyertakan-kode-dari-file-lain)
-- [Bekerja dengan String](#bekerja-dengan-string)
-    - [Menghitung Jumlah Karakter dalam String](#menghitung-jumlah-karakter-dalam-string)
-    - [Mengubah String ke Huruf Kecil atau Besar](#mengubah-string-ke-huruf-kecil-atau-besar)
-    - [Menghapus Spasi dari Awal dan Akhir String](#menghapus-spasi-dari-awal-dan-akhir-string)
-    - [Mengulang String](#mengulang-string)
-    - [Mengambil Bagian dari String](#mengambil-bagian-dari-string)
-    - [Mencari String](#mencari-string)
-    - [Mengganti Bagian dari String](#mengganti-bagian-dari-string)
-    - [Membuat String dengan Format Tertentu](#membuat-string-dengan-format-tertentu)
-    - [Memecah String ke Dalam Array](#memecah-string-ke-dalam-array)
-    - [Menggabungkan Array Menjadi String](#menggabungkan-array-menjadi-string)
-    - [Mengubah Baris Baru menjadi Tag br](#mengubah-baris-baru-menjadi-tag-br)
-    - [Membalikan Sebuah String](#membalikan-sebuah-string)
-- [Bekerja dengan Array](#bekerja-dengan-array)
-    - [Key dan Value dalam Array](#key-dan-value-dalam-array)
-    - [Mengecek Apakah Key Tersedia dalam Array](#mengecek-apakah-key-tersedia-dalam-array)
-    - [Mengakses Elemen Array](#mengakses-elemen-array)
-    - [Array Multidimensi](#array-multidimensi)
-    - [Menghitung Jumlah Elemen dalam Array](#menghitung-jumlah-elemen-dalam-array)
-    - [Perulangan dengan Array](#perulangan-dengan-array)
-    - [Menambahkan Elemen pada Array](#menambahkan-elemen-pada-array)
-    - [Mengubah Elemen Array](#mengubah-elemen-array)
-    - [Menghapus Elemen Array](#menghapus-elemen-array)
-    - [Menggabungkan Array](#menggabungkan-array)
-    - [Menggunakan array_map](#menggunakan-array_map)
-    - [Menggunakan array_filter](#menggunakan-array_filter)
-    - [Menggunakan array_reduce](#menggunakan-array_reduce)
-- [Penutup](#penutup)
-
-## Hello World
-
-![Hello World]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/hello-world-meme.jpg" | absolute_url }})
-
-Langkah pertama, mari kita membuat program "Hello World" dalam PHP. Buka alamat website berikut: [repl.it/languages/php](https://repl.it/languages/php). Situs ini memungkinkan kita untuk menulis dan menjalankan program PHP secara *online* (daring). Tidak hanya PHP, situs ini juga mendukung sejumlah bahasa pemrograman lainnya: Java, Ruby, Python, hingga Haskell.
-
-Tikan baris kode PHP berikut pada *input* (masukan) di sebelah kiri:
-
-```php
-echo 'Hello World!';
+```shell
+$ php -a
 ```
 
-Selanjutnya, klik tombol dengan simbol "play" di bagian atas untuk menjalankan kode tersebut. *Output* (keluaran) dari program akan muncul di sebelah kanan layar. Jika berhasil, kita akan mendapatkan *output* teks berupa `Hello World!`.
+Jika perintah di atas berhasil, kita akan mendapati kursor berada di sebelah kanan teks `php >`. Tanda `php >` ini berarti `shell` siap untuk menerima masukan kode.
 
-![Output program Hello World]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/01-output-repl.png" | absolute_url }})
+```shell
+$ php -a
+Interactive shell
 
-`echo` merupakan *keyword* dalam PHP untuk mencetak *string*. *String* adalah serangkaian karakter—dapat berupa huruf, angka, juga simbol. Dalam PHP, *string* harus diapit oleh tanda kutip tunggal (`'`) ataupun kutip ganda (`"`). Perbedaan keduanya akan dibahas lebih lanjut pada [bagian selanjutnya](#string). Penggunaan *string* tanpa kutip akan membuahkan *syntax error*.
-
-```php
-// Contoh string dengan kutip tunggal.
-echo 'Aku string dengan kutip tunggal!';
-
-// Contoh string dengan kutip ganda.
-echo "Aku string dengan kutip ganda!";
-
-// Tanpa kutip akan menghasilkan syntax error.
-echo Aku pasti error;
+php >
 ```
 
-> ⚠️ **Jangan lupa titik koma!**
+> 📘 **Tidak berhasil di Windows?**
 >
-> PHP mengharuskan setiap *statement* (baris instruksi) diakhiri dengan titik koma (`;`). Tanpa titik koma, program "Hello World" yang kita buat akan menghasilkan *syntax error*.
+> Bila perintah di atas tidak berjalan di Windows, ada kemungkinan lokasi dari aplikasi PHP yang terpasang tidak tidak terdaftar di *environtment variables*. Sayangnya penulis tidak familiar dengan sistem operasi yang satu ini. Sila baca tulisan dari web Petani Kode berikut: [Cara Menjalankan PHP Melalui CMD](https://www.petanikode.com/php-cmd/).
+
+Tikan kode "Hello World" yang kita buat sebelumnya. Namun kali ini ganti teksnya dengan `Hello Again, World!`. Tekan `enter` untuk menjalankan kode. Jika berhasil kita akan mendapati teks tersebut tercetak di layar terminal:
+
+```shell
+php > echo 'Hello again, World!';
+Hello again, World!
+```
+
+> 👍🏻 **Tab completion pada interactive shell**
+>
+> Jika hanya ada satu kemungkinan untuk *auto-completion*, menekan tombol *tab* satu kali akan otomatis melengkapi kode kita. Jika ada beberapa kemungkinan, tekan tombol `tab` dua kali untuk mencetak semua kemungkinan *auto-completion*.
+
+### Menyimpan Kode PHP dalam File
+
+Sekarang kita belajar menyimpan kode PHP di dalam *file*. Buka *text editor* yang telah kita pasang. Dengan *text editor*, buatlah sebuah *file* baru dan tikan kode PHP berikut:
 
 ```php
-// Tanpa diakhiri titik koma.
-echo 'Hello World!'
+<?php
+// 01_hello.php
 
-// Error yang didapat:
-syntax error, unexpected 'string' (T_STRING), expecting ',' or ';'
+echo 'Hello again, World!';
+
+?>
 ```
 
-## Menginstal PHP
+Simpan *file* tersebut di lokasi yang mudah dicari; misalnya dalam direktori `belajar-php` di `Document`. Beri nama *file* tersebut: `01_hello.php`. Pastikan *file* tersimpan dengan ekstensi `.php`.
 
-Sebelum mempelajari PHP lebih lanjut, mari kita menginstal PHP di komputer.
+#### PHP Tags
 
-![You are still using PHP 5]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/php-5-meme.jpg" | absolute_url }})
+Berbeda saat di dalam *interactive shell*, kode PHP dalam sebuah file harus diapit di antara tag pembuka `<?php` dan tag penutup `?>`. Ini karena di dalam PHP, kita diperbolehkan untuk menyisipkan jenis dokumen lain; dokumen HTML misalnya. Tag pembuka dan penutup ini akan memberitahu *parser* di mana kode PHP di mulai dan berakhir.
 
-### Menginstal PHP di macOS
+```php
+<?php
 
-Beruntung macOS sudah menyertakan PHP di dalam sistem operasinya. Untuk mengecek instalasi PHP, buka aplikasi **iTerm** atau **Terminal**. Tikan perintah berikut di dalam terminal untuk mengecek versi PHP yang sudah terpasang:
+echo 'Hello from PHP 🐘';
+
+?>
+
+<h1>Hello from HTML 👋</h1>
+
+<?php
+
+echo 'Hello again from PHP 🐘';
+
+?>
+```
+
+Bila kode PHP di antara kedua tag hanya terdiri dari satu baris *statement*, kita bisa menempatkan tag pembuka dan penutup di baris yang sama seperti ini:
+
+```php
+<?php echo 'Hello from PHP 🐘'; ?>
+
+<h1>Hello from HTML 👋</h1>
+
+<?php echo 'Hello again from PHP 🐘'; ?>
+```
+
+> 📘 Baca lebih lanjut di dokumentasi: [PHP Tags](https://secure.php.net/manual/en/language.basic-syntax.phptags.php).
+
+> ⚠️ **Mencampurkan kode PHP dan HTML adalah praktik yang buruk**
+>
+> Seperti contoh di atas, mencampurkan kode PHP dan HTML dianggap praktik yang tidak baik. Ia bisa menjadi indikasi kurangnya [*separation of concerns*](https://en.wikipedia.org/wiki/Separation_of_concerns). Serta merupakan salah satu celah keamanan yang bisa dieksploitasi—misalnya saat meng-`echo` data masukan dari pengguna lantas kita lalai men-*sanitize* input & tidak meng-*escape* output.
+>
+> Untuk saat ini, kita kesampingkan dulu. Karena topik ini relatif lebih sulit untuk pemula.
+
+#### Lupakan Tag Penutup
+
+Jika file tersebut hanya ada kode PHP di dalamnya, kita tidak perlu menuliskan tag penutup `?>`. Dan umumnya, ini yang dipraktikan sejumlah *developer* PHP. Mari kita hilangkan tag penutup dari file `01_hello.php` kita:
+
+```php
+<?php
+// 01_hello.php
+
+echo 'Hello again, World!';
+```
+
+Jangan lupa simpan perubahan di atas. Tugas kita sekarang adalah menjalankan file PHP tersebut!
+
+![Hey, don't even worry about it](https://media.giphy.com/media/374pcIBVEGb6g/giphy.gif)
+
+> 💡 **Tag pembuka tidak akan disertakan pada contoh kode**
+>
+> Pada contoh-contoh kode berikutnya, kita sengaja tidak akan menyertakan tag pembuka `<?php` agar lebih ringkas. Jadi jika kamu menyalin contoh kode, jangan lupa untuk menambahkan kode pembuka.
+
+### Menjalankan file PHP dengan Command Line
+
+Salah satu cara untuk menjalankan file PHP adalah dengan melalui *command line* atau terminal. Buka terminal dan masuk ke dalam direktori tempat kamu menyimpan file `01_hello.php`.
 
 ```shell
-$ php -v
+$ cd ~/Documents/belajar-php
 ```
 
-Perintah di atas akan mencetak `output` berupa versi PHP yang terpasang:
+`cd` (akronim dari *change directory*) adalah perintah untuk merubah lokasi dari direktori kerja pada terminal. Arahkan pada direktori tempat kita menyimpan file `01_hello.php`. Penulis menggunakan sistem operasi macOS dan menyimpan file PHP tersebut di dalam direktori `belajar-php` pada `Documents`. Jika kamu menggunakan Windows dan menyimpannya pada `My Documents`, secara `default` lokasi `My Documents` berada di:
 
 ```shell
-PHP 7.2.4 (cli) (built: Mar 29 2018 15:19:46) ( NTS )
-Copyright (c) 1997-2018 The PHP Group
-Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
-    with Zend OPcache v7.2.4, Copyright (c) 1999-2018, by Zend Technologies
+$ cd C:\Users\<nama user>\Documents\belajar-php
 ```
 
-#### Menginstal Homebrew
-
-Biasanya versi PHP bawaan macOS sedikit tertinggal. Untuk menginstal versi teranyar, salah satu cara yang paling mudah adalah dengan menggunakan [Homebrew](https://brew.sh/). Homebrew ini merupakan *package manager* untuk macOS—layaknya dpkg pada Debian atau RPM pada Redhat.
-
-Pertama, kita perlu menginstal aplikasi **Command Line Tools** dari Apple. Jalankan perintah berikut pada terminal:
+Setelah berada di dalam direktori `belajar-php`, tikan perintah berikut di terminal untuk menjalankan file `01_hello.php`:
 
 ```shell
-$ xcode-select --install
+$ php 01_hello.php
 ```
 
-Selanjutnya, tikan perintah berikut untuk menginstal Homebrew:
+Jika berhasil, kita akan mendapatkan teks `Hello again, World!` tercetak di layar. Sebenarnya kita juga bisa menggunakan *absolute path* tanpa harus `cd` ke direktory `belajar-php`:
 
 ```shell
-$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+$ php ~/Documents/belajar-php/01_hello.php
 ```
 
-Setelah sukses menginstal Homebrew, kita bisa menggunakan perintah-perintah berikut:
+> 📘 Baca lebih lanjut di dokumentasi: [Executing PHP files](https://secure.php.net/manual/en/features.commandline.usage.php).
+
+### Menjalankan file PHP dengan Web Server
+
+Cara kedua untuk menjalankan file PHP adalah dengan web server. Cara inilah yang paling umum digunakan.
+
+![Diagram client-server]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/05-client-server-diagram.png" | absolute_url }})
+
+Bila disederhanakan, alurnya seperti ini:
+
+1. *Client* memasukan alamat dari sebuah web pada peramban atau *browser*. Lalu *browser* mengirimkan *request* untuk sebuah laman web atau dokumen ini ke *server*.
+2. *Request* dari *client* diterima web *server*. Apabila dokumen yang diminta berupa file statis (seperti file HTML, gambar, CSS, atau Javascript), umumnya web *server* dapat melayani permintaan dokumen tersebut secara langsung. Web *server* kemudian akan mengirimkan respon kepada *client* berupa dokumen yang diminta.
+3. Namun bila dokumen yang diminta tersebut adalah file PHP, web *server* akan meneruskan file tersebut ke PHP *interpreter* untuk diproses terlebih dahulu.
+4. Hasil keluaran dari file PHP inilah yang kemudian akan dikirimkan ke *client* oleh web *server*. Keluarannya dapat berupa teks, laman HTML, XML, JSON, hingga dokumen berupa PDF atau JPEG.
+
+Ada banyak pilihan web *server* yang bisa kita gunakan. Sejak versi 5.4, PHP sendiri sudah menyertakan web *server* bawaan yang siap digunakan untuk kepentingan *development*. Untuk mempermudah, dalam tutorial ini kita cukup menggunakan web *server* bawaan PHP.
+
+> ⚠️ **Web server bawaan PHP bukan untuk production!**
+>
+> Web *server* bawaan PHP ini berjalan dalam *single-threaded process* sehingga hanya mampu mengolah satu *request* dalam satu waktu. Web *server* bawaan ini hanya diperuntukan untuk kepentingan *development*. Untuk *production* gunakanlah web *server* yang performanya sudah teruji seperti Nginx atau Apache.
+
+Buka kembali terminal, dan arahkan lokasi dari direktori kerja ke direktori tempat kita menyimpan file `01_hello.php`:
 
 ```shell
-# Untuk mengecek masalah pada instalasi Homebrew.
-$ brew doctor
-
-# Mencetak bantuan Homebrew.
-$ brew help
-
-# Memperbarui instalasi Homebrew dan daftar formulanya.
-$ brew update
+$ cd ~/Documents/belajar-php
 ```
 
-Sementara untuk mengorganisir formula (istilah *package* dalam Homebrew), kita bisa menjalankan peritah-perintah berikut:
+Kemudian tikan perintah berikut untuk menjalankan web server bawaan PHP:
 
 ```shell
-# Untuk mencari formula.
-$ brew search <teks pencarian>
-
-# Untuk menginstal formula.
-$ brew install <nama formula>
-
-# Untuk menghapus instalasi formula.
-$ brew uninstall <nama formula>
-
-# Untuk memperbarui formula.
-$ brew upgrade <name formula>
-
-# Memperbarui semua formula yang sudah terpasang.
-$ brew upgrade
-
-# Mencetak semua formula yang sudah terpasang.
-$ brew list
+$ php -S localhost:8000
 ```
 
-#### Memperbarui Homebrew
-
-Untuk kamu yang sudah menginstal Homebrew sebelumnya, jangan lupa untuk menjalankan perintah berikut untuk memperbarui instalasi Homebrew beserta daftar formulanya:
+Bila berhasil, web server akan berjalan pada alamat `localhost` dan *port* `8000`. Keluaran seperti berikut akan tercetak pada layar terminal:
 
 ```shell
-$ brew update
+PHP 7.2.4 Development Server started at Sat Apr 20 19:01:12 2018
+Listening on http://localhost:8000
+Document root is /Users/risan/Documents/belajar-php
+Press Ctrl-C to quit.
 ```
 
-#### Menginstal PHP dengan Homebrew
+Buka *browser* dan masukan alamat [localhost:8000/01_hello.php](http://localhost:8000/01_hello.php). Kita akan mendapati teks `Hello again, World!` tercetak pada layar *browser*.
 
-Jalankan perintah berikut di terminal untuk menginstal PHP:
+![Tampilan pada browser]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/06-hello-again-world.png" | absolute_url }})
 
-```shell
-$ brew install php
+> 📘 Baca lebih lanjut di dokumentasi: [Built-in web server](https://secure.php.net/manual/en/features.commandline.webserver.php).
+
+Dengan `echo`, kita juga bisa mencetak tag HTML. Ubah *file* `01_hello.php` seperti kode berikut dan coba jalankan kembali di *browser*. Teks `Hello again, World!` akan tercetak besar sekarang.
+
+```php
+<?php
+// 01_hello.php
+
+echo '<h1>Hello again, World!</h1>';
 ```
 
-Setelah instalasi tuntas, *restart* terminal atau buka tab baru. Jalankan perintah berikut untuk memverifikasi versi PHP yang terpasang:
+Dalam jaringan komputer, `localhost` berarti "komputer ini"—komputer yang tengah kita pakai. Secara *default*, `localhost` akan di-*resolve* ke dalam IP `127.0.0.1`. Dalam skema ini komputer kita menjadi *client* sekaligus *server*-nya.
 
-```shell
-$ php -v
+Nomor `port` yang digunakan pun tidak harus `8000`, bisa `3000`, `4000` atau `9000`. Selama nomor *port* yang digunakan `>= 1024` dan tidak sedang digunakan oleh aplikasi lain.
+
+> 💡 **Default Port untuk HTTP & HTTPS**
+>
+> Mungkin kamu bertanya-tanya: mengapa saat membuka laman facebook, kita tidak perlu mencantumkan nomor *port*? Cukup: `https://www.facebook.com`. Mengapa kita perlu mencantumkan nomor *port* pada contoh di atas?
+>
+> Ini karena web server Facebook dan situs-situs lainya menggunakan *port default* yang disediakan untuk HTTP & HTTPS. HTTP merupakan protokol yang menjadi fondasi komunikasi data pada jaringan internet. Layanan HTTP ini menggunakan *port* 80 sementara HTTPS menggunakan *port* 443.
+>
+> Apabila web server kita menggunakan *port* diluar `80` atau `443`, maka kita perlu mencantumkan nomor *port* yang digunakan; seperti pada contoh di atas: `localhost:8000`. Kamu bisa saja mengakses Facebook dengan mencantumkan *port*-nya: [`www.facebook.com:443`](https://www.facebook.com:443).
+
+🎉 Selamat kamu telah berhasil menjalankan file PHP dengan web server!
+
+![Congratulations](https://media.giphy.com/media/9sVS967nejlqU/giphy.gif)
+
+### Latihan Membuat File PHP
+
+Untuk latihan, buatlah *file* baru dengan nama `02_hello_php_html.php`. Tikan kode berikut:
+
+```php
+<?php echo 'Hello from PHP 🐘'; ?>
+
+<h1>Hello from HTML 👋</h1>
+
+<?php
+
+echo '<h1>Hello from PHP again 🐘<h1>';
+echo '<img src="https://images.unsplash.com/photo-1519354754184-e1d9c46182c0?w=500&q=80">';
 ```
 
-Pada saat artikel ini ditulis formula `php` akan menginstall PHP versi `7.2.4`.
+Perhatikan kembali bagaimana kita menyisipkan dokumen HTML ke dalam file PHP. Juga cermati *tag* penutup php yang tidak disertakan di bagian akhir *file*.
 
-> 💡 Saat tutorial ini ditulis, formula-formula pada `homebrew-php` tengah dalam proses penyatuan ke dalam *repository* utama [`homebrew-core`](https://github.com/Homebrew/homebrew-core). Dengan penyatuan ini kita tidak perlu lagi men-`tap` [`homebrew-php`](https://github.com/Homebrew/homebrew-php) untuk menginstall PHP. Ikuti diskusinya lebih lanjut [di sini](https://github.com/Homebrew/homebrew-php/issues/4721).
+Jangan lupa simpan *file* `02_hello_php_html.php` di atas dan coba jalankan pada *browser*, kita akan mendapatkan tampilan seperti berikut:
 
-### Menginstal PHP di Ubuntu
+![Output latihan 1]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/07-exercise-1.png" | absolute_url }})
 
-Instalasi PHP pada Ubuntu dan distro Linux lainnya sangatlah mudah. *Package* PHP umumnya sudah tersedia pada *repository* bawaan. Pun begitu, versi PHP yang tersedia biasanya sedikit tertinggal.
+### Rangkuman Membuat File PHP
 
-Untuk mendapatkan PHP versi teranyar, kita bisa menambahkan PPA (Personal Package Archive) dari `ondrej/php`. Buka terminal dan jalankan perintah berikut:
+Dari subbab ini kita bisa menyimpulkan beberapa poin:
 
-```shell
-$ sudo add-apt-repository ppa:ondrej/php
-```
-
-Setelah PPA ini berhasil ditambahkan, jangan lupa untuk memperbarui daftar *package* pada komputer dengan menjalankan perintah berikut:
-
-```shell
-$ sudo apt-get update
-```
-
-Gunakan perintah `apt-cache search` untuk mencari versi PHP yang diinginkan:
-
-```shell
-$ sudo apt-cache search php7.2
-```
-
-Jalankan perintah berikut untuk menginstall PHP versi 7.2:
-
-```shell
-$ sudo apt-get install php7.2 -y
-```
-
-Untuk memverifikasi versi PHP yang terpasang, jalankan perintah berikut di terminal:
-
-```shell
-$ php -v
-```
-
-### Menginstal PHP di Windows
-
-Sayangnya penulis tidak berpengalaman dengan sistem operasi Windows. Untungnya ada sejumlah *bundle* aplikasi yang mudah untuk dipasang dan umumnya menyertakan paket komplit mulai dari PHP, web *server*, hingga *database*. Berikut beberapa pilihan populer:
-
-#### XAMPP
-
-[XAMPP](https://www.apachefriends.org) merupakan salah satu *bundle* aplikasi yang populer untuk bekerja dengan PHP di Windows. Selain PHP, dalam *bundle*-nya ia turut menyertakan Apache sebagai web server dan MariaDB (*fork* dari MySQL yang dikembangkan komunitas) untuk *database*-nya. XAMPP juga menyertakan phpMyAdmin untuk mempermudah kerja dengan database.
-
-> 📘 Cek tutorial [Cara Menggunakan XAMPP untuk Menjalankan PHP & MySQL](https://www.niagahoster.co.id/blog/cara-menggunakan-xampp/) dari Niagahoster.
-
-#### Laragon
-
-![Website Laragon]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/02-laragon-website.png" | absolute_url }})
-
-Dibandingkan dengan XAMPP, [Laragon](https://www.laragon.org) relatif lebih modern dan menawarkan banyak fitur. Untuk web *server*, Laragon menyertakan Apache dan Nginx. Untuk *database*-nya, Laragon mengandalkan MySQL. Selain itu Laragon menyediakan beragam *tools* esensial: Git, Composer, Node.js hingga Yarn. Dengan Laragon kita juga dapat dengan mudah membuat proyek berbasis Wordpress, Symfony, Laravel hingga Drupal. Fitur lainnya yang menggiurkan adalah kemampuannya untuk membuat *virtual host* secara otomatis.
-
-Cek [dokumentasi resmi Laragon](https://www.laragon.org/docs/install.html) untuk mempelajari cara menginstal dan ragam fitur yang ditawarkan.
-
-#### Aplikasi Alternatif Lainnya
-
-Selain dua *bundle* aplikasi di atas, masih banyak alternatif lainnya yang bisa kamu coba:
-
-- [MAMP](https://www.mamp.info/) - *bundle* aplikasi PHP, Apache, Nginx, MySQL dan Python.
-- [WampServer](http://www.wampserver.com/) - *bundle* aplikasi PHP, Apache dan MySql.
-- [PHP for Windows](https://windows.php.net/download/) - jika kamu ingin menginstal PHP langsung dari *binaries* nya.
-
-## Memilih Text Editor
-
-![Website Laragon]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/vim-tweet.png" | absolute_url }})
-
-Yang kita butuhkan selanjutnya adalah *text editor* (editor teks) yang mumpuni. Ada banyak pilihan *text editor* di luar sana. Berikut adalah dua *text editor* yang cocok untuk pemula:
-
-### Sublime Text
-
-[Sublime Text](https://www.sublimetext.com/) merupakan salah satu *text editor* yang sangat populer. Ia tersohor karena ringan dan cepat, bahkan saat membuka file dengan ukuran yang sangat besar. Meski tak sepenuhnya gratis, ia memberikan waktu *trial* selamanya. Sayangnya, karena dikembangkan seorang diri, pembaruan aplikasinya sangat jarang.
-
-![Sublime Text]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/03-sublime-text-website.png" | absolute_url }})
-
-### Visual Studio Code
-
-[Visual Studio Code](https://code.visualstudio.com/) atau VSCode merupakan *text editor* *open source* dari Microsoft yang akhir-akhir ini popularitasnya kian menanjak. Ia dikembangkan berdasarkan *text editor* [Atom](https://atom.io/) besutan Github. VSCode menawarkan fitur yang mutakhir untuk sebuah *text editor*: *auto-completion* dengan *IntelliSense*, *debugger*, integrasi Git, serta *built-in* terminal yang sangat responsif.
-
-Dukungan komunitasnya juga sangat besar. Pengembangan *text editor*-nya sangat aktif serta banyak *extension* yang tersedia untuk mempermudah pekerjaan *coding* sehari-hari.
-
-![Visual Studio Code]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/04-vscode-website.png" | absolute_url }})
+1. Kita bisa mencampurkan *file* PHP dengan dokumen lain (HTML misalnya).
+2. Mencampurkan *file* PHP dengan dokumen HTML dianggap sebagai praktik yang buruk.
+3. File PHP tidak butuh tag penutup (`?>`), kecuali kita ingin menyisipkan dokumen lain setelahnya.
+4. Kita bisa mencetak tag HTML dalam kode PHP.
+5. *Server* bawaan PHP hanya untuk kepentingan pengembangan, jangan gunakan untuk *production*!
