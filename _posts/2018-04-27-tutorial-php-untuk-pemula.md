@@ -1,9 +1,9 @@
 ---
 title: Tutorial PHP untuk Pemula
 excerpt: Tutorial dasar PHP untuk pemula. Pelajari dasar-dasar pemrograman PHP mulai dari variable, tipe data, operator, percabangan, perulangan, fungsi, hingga Closure.
-image_thumb: http://localhost:4000/img/php-small.png
+image_thumb: https://koding.blog/img/php-small.png
 image:
-  path: http://localhost:4000/img/php.png
+  path: https://koding.blog/img/php.png
   width: 1200
   height: 800
 ---
