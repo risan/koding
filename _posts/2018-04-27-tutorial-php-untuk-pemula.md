@@ -363,7 +363,7 @@ Sayangnya penulis tidak berpengalaman dengan sistem operasi Windows. Untungnya a
 
 #### Laragon
 
-![Website Laragon]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/02-laragon-website.png" | absolute_url }})
+![Website Laragon]({{ "/img/2018-03-08-tutorial-php-untuk-pemula/02-laragon-website.jpg" | absolute_url }})
 
 Dibandingkan dengan XAMPP, [Laragon](https://www.laragon.org) relatif lebih modern dan menawarkan banyak fitur. Untuk web *server*, Laragon menyertakan Apache dan Nginx. Untuk *database*-nya, Laragon mengandalkan MySQL. Selain itu Laragon menyediakan beragam *tools* esensial: Git, Composer, Node.js hingga Yarn. Dengan Laragon kita juga dapat dengan mudah membuat proyek berbasis Wordpress, Symfony, Laravel hingga Drupal. Fitur lainnya yang menggiurkan adalah kemampuannya untuk membuat *virtual host* secara otomatis.
 
